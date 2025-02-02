@@ -9,8 +9,8 @@ public class EnnemyDistanceBehavior : MonoBehaviour
     public GameObject projectilePrefab;
     public float tauxDeTir = 1f;
     private float prochainTir;
-    public float vitesseProjectile = 20f; // Vitesse de la balle
-    public float offsetSpawn = 1.5f; // Distance devant l'ennemi pour le spawn de la balle
+    public float vitesseProjectile = 20f;
+    public float offsetSpawn = 1.5f;
 
     void Start()
     {
@@ -30,11 +30,9 @@ public class EnnemyDistanceBehavior : MonoBehaviour
 
             if (distance > distanceMin)
             {
-                // Mouvement vers le joueur
                 direction = (cible.position - transform.position).normalized;
                 transform.position += direction * vitesse * Time.deltaTime;
 
-                // Tirer si dans la distance de tir
                 if (distance <= distanceDeTir)
                 {
                     if (Time.time >= prochainTir)
@@ -46,7 +44,6 @@ public class EnnemyDistanceBehavior : MonoBehaviour
             }
             else
             {
-                // Mouvement éloigné du joueur
                 direction = (transform.position - cible.position).normalized;
                 transform.position += direction * vitesse * Time.deltaTime;
             }

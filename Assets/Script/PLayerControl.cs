@@ -21,13 +21,9 @@ public class PLayerControl : MonoBehaviour
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
 
         playerRenderer = GetComponent<Renderer>();
-        if (playerRenderer == null)
-        {
-            Debug.LogError("Renderer non trouvé sur le GameObject.");
-        }
     }
 
     void Update()
