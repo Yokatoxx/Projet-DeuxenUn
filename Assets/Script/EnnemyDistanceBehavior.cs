@@ -11,9 +11,12 @@ public class EnnemyDistanceBehavior : MonoBehaviour
     private float prochainTir;
     public float vitesseProjectile = 20f;
     public float offsetSpawn = 1.5f;
+    private Vector3 originalScale; // Stockage de l'échelle originale
 
     void Start()
     {
+        originalScale = transform.localScale; // Initialiser l'échelle originale
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -30,22 +33,30 @@ public class EnnemyDistanceBehavior : MonoBehaviour
 
             if (distance > distanceMin)
             {
+                // Déplacement vers le joueur
                 direction = (cible.position - transform.position).normalized;
                 transform.position += direction * vitesse * Time.deltaTime;
 
-                if (distance <= distanceDeTir)
+                // Gestion du flip
+                if (direction.x > 0) transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+                else if (direction.x < 0) transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+
+                // Logique de tir
+                if (distance <= distanceDeTir && Time.time >= prochainTir)
                 {
-                    if (Time.time >= prochainTir)
-                    {
-                        Tirer();
-                        prochainTir = Time.time + 1f / tauxDeTir;
-                    }
+                    Tirer();
+                    prochainTir = Time.time + 1f / tauxDeTir;
                 }
             }
             else
             {
+                // Déplacement inverse pour garder la distance
                 direction = (transform.position - cible.position).normalized;
                 transform.position += direction * vitesse * Time.deltaTime;
+
+                // Gestion du flip (inversée car direction opposée)
+                if (direction.x > 0) transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+                else if (direction.x < 0) transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
             }
         }
     }
