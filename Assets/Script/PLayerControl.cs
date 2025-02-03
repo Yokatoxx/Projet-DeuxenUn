@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class PLayerControl : MonoBehaviour
 {
@@ -45,6 +47,13 @@ public class PLayerControl : MonoBehaviour
                     playerRenderer.enabled = true;
                 }
             }
+        }
+        if (health <= 0f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
+
         }
     }
 
@@ -103,4 +112,5 @@ public class PLayerControl : MonoBehaviour
         }
         playerRenderer.enabled = true;
     }
+    
 }
