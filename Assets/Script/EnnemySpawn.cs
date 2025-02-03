@@ -33,8 +33,9 @@ public class EnnemySpawn : MonoBehaviour
 
     private void SpawnEnemy()
     {
-
         int index = Random.Range(0, spawnPoints.Length);
-        Instantiate(enemyPrefab, spawnPoints[index].position, Quaternion.identity);
+        // Rotation modifiée avec 90 degrés sur l'axe X
+        Quaternion spawnRotation = Quaternion.Euler(90f, 0f, 0f);
+        Instantiate(enemyPrefab, spawnPoints[index].position, spawnRotation);
     }
 }

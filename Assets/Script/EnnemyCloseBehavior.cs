@@ -29,12 +29,12 @@ public class EnnemyCloseBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Balle"))
         {
-            PrendreDegats(1); // Perd 1 point de vie par balle
-            Destroy(collision.gameObject); // Détruit la balle
+            PrendreDegats(1);
+            Destroy(collision.gameObject);
         }
     }
 
@@ -50,7 +50,7 @@ public class EnnemyCloseBehavior : MonoBehaviour
 
     private void Mourir()
     {
-        // Ajouter ici des effets de mort (animation, son, etc.)
-        Destroy(gameObject); // Détruit l'ennemi
+        
+        Destroy(gameObject);
     }
 }

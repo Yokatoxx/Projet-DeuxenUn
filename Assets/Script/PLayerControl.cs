@@ -14,7 +14,7 @@ public class PLayerControl : MonoBehaviour
     private bool isInvincible = false;
 
     public float blinkInterval = 0.1f;
-    private Renderer playerRenderer;
+    private SpriteRenderer playerSpriteRenderer;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class PLayerControl : MonoBehaviour
         }
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
 
-        playerRenderer = GetComponent<Renderer>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -35,6 +35,18 @@ public class PLayerControl : MonoBehaviour
         Vector3 movement = new Vector3(moveX, 0, moveZ) * speed;
         rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);
 
+        // Flip du sprite avec A et D
+        if (Input.GetKey(KeyCode.D))
+        {
+            playerSpriteRenderer.flipX = false;
+            playerSpriteRenderer.transform.localScale = new Vector3(2, 2, 2);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            playerSpriteRenderer.flipX = true;
+            playerSpriteRenderer.transform.localScale = new Vector3(2, 2, 2);
+        }
+
         // Gestion du timer d'invincibilité
         if (isInvincible)
         {
@@ -42,18 +54,15 @@ public class PLayerControl : MonoBehaviour
             if (invincibilityTimer <= 0f)
             {
                 isInvincible = false;
-                if (playerRenderer != null)
+                if (playerSpriteRenderer != null)
                 {
-                    playerRenderer.enabled = true;
+                    playerSpriteRenderer.enabled = true;
                 }
             }
         }
         if (health <= 0f)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-
-
         }
     }
 
@@ -100,17 +109,16 @@ public class PLayerControl : MonoBehaviour
 
     private IEnumerator Clignoter()
     {
-        if (playerRenderer == null)
+        if (playerSpriteRenderer == null)
             yield break;
 
         float elapsed = 0f;
         while (elapsed < invincibilityDuration)
         {
-            playerRenderer.enabled = !playerRenderer.enabled;
+            playerSpriteRenderer.enabled = !playerSpriteRenderer.enabled;
             yield return new WaitForSeconds(blinkInterval);
             elapsed += blinkInterval;
         }
-        playerRenderer.enabled = true;
+        playerSpriteRenderer.enabled = true;
     }
-    
 }
