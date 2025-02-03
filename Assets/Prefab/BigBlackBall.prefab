@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 374988959729881688}
   - component: {fileID: -5119194603923267411}
   - component: {fileID: 2718501485379151357}
+  - component: {fileID: 6895505265776757199}
   m_Layer: 0
   m_Name: BigBlackBall
   m_TagString: Balle
@@ -137,3 +138,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.455
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6895505265776757199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7115772988598462112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
