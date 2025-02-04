@@ -1,5 +1,6 @@
 // AmeliorationMenu.cs
 using UnityEngine;
+using TMPro;
 
 public class AmeliorationMenu : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class AmeliorationMenu : MonoBehaviour
     [SerializeField] private GameObject spawner;
     [SerializeField] private PLayerControl player;
     [SerializeField] private Shoot hand;
+
+    // Éléments TextMeshProUGUI pour afficher les prix des améliorations
+    [SerializeField] private TextMeshProUGUI speedBonusPriceText;
+    [SerializeField] private TextMeshProUGUI shootingRateBonusPriceText;
+    [SerializeField] private TextMeshProUGUI regenRateBonusPriceText;
 
     private void Start()
     {
@@ -35,48 +41,82 @@ public class AmeliorationMenu : MonoBehaviour
         {
             Debug.LogError("Hand (Shoot) n'est pas assigné dans l'inspecteur.");
         }
+
+        // Initialiser les textes des prix des améliorations
+        InitializeUpgradePrices();
+    }
+
+    private void InitializeUpgradePrices()
+    {
+        if (Economy.Instance == null)
+        {
+            Debug.LogError("Instance d'Economy non trouvée.");
+            return;
+        }
+
+        speedBonusPriceText.text = $"{Economy.Instance.GetPrice("SpeedBonus")}";
+        shootingRateBonusPriceText.text = $"{Economy.Instance.GetPrice("ShootingRateBonus")}";
+        regenRateBonusPriceText.text = $"{Economy.Instance.GetPrice("RegenRateBonus")}";
     }
 
     public void SpeedBonus()
     {
-        if (player != null)
+        int price = Economy.Instance.GetPrice("SpeedBonus");
+        if (Economy.Instance.Purchase(price))
         {
-            player.speed += 1;
-            Debug.Log("Bonus de vitesse appliqué. Nouvelle vitesse : " + player.speed);
+            if (player != null)
+            {
+                player.speed += 1;
+                Debug.Log("Bonus de vitesse appliqué. Nouvelle vitesse : " + player.speed);
+            }
+            OnAmeliorationChoisie();
         }
-        OnAmeliorationChoisie();
+        else
+        {
+            Debug.Log("Pas assez d'Ame pour le bonus de vitesse.");
+        }
     }
 
     public void ShootingRateBonus()
     {
-        if (hand != null)
+        int price = Economy.Instance.GetPrice("ShootingRateBonus");
+        if (Economy.Instance.Purchase(price))
         {
-            hand.shootCooldown = Mathf.Max(0.1f, hand.shootCooldown - 0.1f);
-            Debug.Log("Bonus de taux de tir appliqué. Nouveau cooldown : " + hand.shootCooldown);
+            if (hand != null)
+            {
+                hand.shootCooldown = Mathf.Max(0.1f, hand.shootCooldown - 0.1f);
+                Debug.Log("Bonus de taux de tir appliqué. Nouveau cooldown : " + hand.shootCooldown);
+            }
+            OnAmeliorationChoisie();
         }
-        OnAmeliorationChoisie();
-    }
-
-    public void HealingBonus()
-    {
-        if (player != null)
+        else
         {
-            player.health += 5; // Exemple : augmente la santé du joueur
-            Debug.Log("Bonus de santé appliqué. Nouvelle santé : " + player.health);
+            Debug.Log("Pas assez d'Ame pour le bonus de taux de tir.");
         }
-        OnAmeliorationChoisie();
     }
 
     public void RegenRateBonus()
     {
-        if (player != null)
+        int price = Economy.Instance.GetPrice("RegenRateBonus");
+        if (Economy.Instance.Purchase(price))
         {
-            player.ReduireIntervalleRegen(0.5f); // Réduit l'intervalle de régénération de 0.5 secondes
-            Debug.Log("Bonus de régénération appliqué. Nouveau intervalle de régénération : " + player.currentRegenInterval + " secondes");
+            if (player != null)
+            {
+                player.ReduireIntervalleRegen(0.5f); // Réduit l'intervalle de régénération de 0.5 secondes
+                Debug.Log("Bonus de régénération appliqué. Nouveau intervalle de régénération : " + player.currentRegenInterval + " secondes");
+            }
+            OnAmeliorationChoisie();
         }
+        else
+        {
+            Debug.Log("Pas assez d'Ame pour le bonus de régénération.");
+        }
+    }
+    public void CloseMenu()
+    {
+        Debug.Log("Menu d'amélioration fermé sans sélection d'amélioration.");
         OnAmeliorationChoisie();
     }
-
     private void OnAmeliorationChoisie()
     {
         if (nombreDeVague != null)
