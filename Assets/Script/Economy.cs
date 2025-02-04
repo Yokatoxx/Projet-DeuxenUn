@@ -92,7 +92,7 @@ public class Economy : MonoBehaviour
     {
         if (coinsText != null)
         {
-            coinsText.text = $"{Coins} Ame";
+            coinsText.text = $"{Coins}";
         }
         else
         {

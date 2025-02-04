@@ -9,7 +9,7 @@ public class MenuPlay: MonoBehaviour
         if (collision.gameObject.CompareTag("BalleBlanche"))
         {
             Destroy(collision.gameObject);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
     }

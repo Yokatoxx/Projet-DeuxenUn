@@ -1,7 +1,6 @@
 // PLayerControl.cs
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class PLayerControl : MonoBehaviour
@@ -23,6 +22,12 @@ public class PLayerControl : MonoBehaviour
     private float regenTimer = 0f;
     private const float minRegenInterval = 1f; // Intervalle minimum en secondes
 
+    // Référence au Canvas GameOver
+    [SerializeField] private GameObject gameOverCanvas;
+
+    // Référence à NombreDeVague pour gérer le Game Over
+    [SerializeField] private NombreDeVague nombreDeVague;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,6 +38,20 @@ public class PLayerControl : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
 
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("GameOverCanvas n'est pas assigné dans l'inspecteur.");
+        }
+
+        if (nombreDeVague == null)
+        {
+            Debug.LogError("NombreDeVague n'est pas assigné dans l'inspecteur.");
+        }
     }
 
     void Update()
@@ -79,10 +98,12 @@ public class PLayerControl : MonoBehaviour
             }
         }
 
+        // Vérification de la santé du joueur pour le Game Over
         if (health <= 0f)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            HandleGameOver();
         }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             DimensionManager.Instance.SwitchDimension();
@@ -158,5 +179,31 @@ public class PLayerControl : MonoBehaviour
     public void ReduireIntervalleRegen(float reduction)
     {
         currentRegenInterval = Mathf.Max(minRegenInterval, currentRegenInterval - reduction);
+    }
+
+    // Nouvelle méthode pour gérer le Game Over
+    private void HandleGameOver()
+    {
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(true);
+            Debug.Log("Game Over! Affichage du Canvas Game Over.");
+
+            // Désactiver le contrôle du joueur
+            this.enabled = false;
+        }
+        else
+        {
+            Debug.LogWarning("GameOverCanvas n'est pas assigné.");
+        }
+
+        if (nombreDeVague != null)
+        {
+            nombreDeVague.HandleGameOver();
+        }
+        else
+        {
+            Debug.LogError("NombreDeVague n'est pas assigné. Impossible de gérer le Game Over.");
+        }
     }
 }
