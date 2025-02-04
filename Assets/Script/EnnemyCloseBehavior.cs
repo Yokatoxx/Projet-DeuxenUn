@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnnemyCloseBehavior : MonoBehaviour
@@ -10,10 +11,14 @@ public class EnnemyCloseBehavior : MonoBehaviour
     public int maxHealth = 3;
     [SerializeField] private int currentHealth;
 
+    private SpriteRenderer spriteRenderer;
+    private bool isBlinking = false;
+
     void Start()
     {
         currentHealth = maxHealth;
         originalScale = transform.localScale;
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -56,10 +61,32 @@ public class EnnemyCloseBehavior : MonoBehaviour
     {
         currentHealth -= degats;
 
+        if (!isBlinking)
+        {
+            StartCoroutine(Blink());
+        }
+
         if (currentHealth <= 0)
         {
             Mourir();
         }
+    }
+
+    private IEnumerator Blink()
+    {
+        isBlinking = true;
+        int blinkCount = 6;
+        float blinkDuration = 0.1f;
+
+        for (int i = 0; i < blinkCount; i++)
+        {
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(blinkDuration);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(blinkDuration);
+        }
+
+        isBlinking = false;
     }
 
     private void Mourir()

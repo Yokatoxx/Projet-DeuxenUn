@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnnemyDistanceBehavior : MonoBehaviour
@@ -16,6 +17,9 @@ public class EnnemyDistanceBehavior : MonoBehaviour
     public int maxHealth = 3;
     public GameObject Drop;
 
+    private SpriteRenderer spriteRenderer;
+    private bool isBlinking = false;
+
     void Start()
     {
         originalScale = transform.localScale; // Initialiser l'échelle originale
@@ -26,6 +30,8 @@ public class EnnemyDistanceBehavior : MonoBehaviour
             cible = player.transform;
         }
         currentHealth = maxHealth;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -92,10 +98,32 @@ public class EnnemyDistanceBehavior : MonoBehaviour
     {
         currentHealth -= degats;
 
+        if (!isBlinking)
+        {
+            StartCoroutine(Blink());
+        }
+
         if (currentHealth <= 0)
         {
             Mourir();
         }
+    }
+
+    private IEnumerator Blink()
+    {
+        isBlinking = true;
+        int blinkCount = 6;
+        float blinkDuration = 0.1f;
+
+        for (int i = 0; i < blinkCount; i++)
+        {
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(blinkDuration);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(blinkDuration);
+        }
+
+        isBlinking = false;
     }
 
     private void Mourir()
