@@ -1,10 +1,13 @@
 // Economy.cs
 using UnityEngine;
 using System;
+using TMPro;
 
 public class Economy : MonoBehaviour
 {
     public static Economy Instance { get; private set; }
+
+    [SerializeField] private TextMeshProUGUI coinsText; // Référence au TextMeshProUGUI pour afficher les coins
 
     private int coins = 0;
     public int Coins
@@ -14,6 +17,7 @@ public class Economy : MonoBehaviour
         {
             coins = value;
             OnCoinsChanged?.Invoke(coins);
+            UpdateCoinsUI(); // Met à jour l'affichage des coins
         }
     }
 
@@ -30,10 +34,12 @@ public class Economy : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            Debug.Log("Economy Instance initialisée.");
             // Optionnel : charger les coins sauvegardés ici
         }
         else
         {
+            Debug.LogError("Multiple instances de Economy détectées. Déstruction de l'instance supplémentaire.");
             Destroy(gameObject);
         }
     }
@@ -80,5 +86,22 @@ public class Economy : MonoBehaviour
             "RegenRateBonus" => regenRateBonusPrice,
             _ => 0,
         };
+    }
+
+    private void UpdateCoinsUI()
+    {
+        if (coinsText != null)
+        {
+            coinsText.text = $"{Coins} Ame";
+        }
+        else
+        {
+            Debug.LogError("coinsText n'est pas assigné dans l'inspecteur.");
+        }
+    }
+
+    private void Start()
+    {
+        UpdateCoinsUI(); // Assure que l'UI est mise à jour au démarrage
     }
 }

@@ -3904,7 +3904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdf837f058add744a8d1f5f3772e25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ameUI: {fileID: 1120446324}
+  ameUI: {fileID: 0}
 --- !u!4 &552850924
 Transform:
   m_ObjectHideFlags: 0
@@ -5040,6 +5040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06fe170b5547f84d952d6dedf7ed239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinsText: {fileID: 1120446324}
 --- !u!4 &779135770
 Transform:
   m_ObjectHideFlags: 0
