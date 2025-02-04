@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         ICollectible collectible = collision.GetComponent<ICollectible>();
 
