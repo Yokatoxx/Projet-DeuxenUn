@@ -160,8 +160,8 @@ MonoBehaviour:
   distanceDeTir: 10
   distanceMin: 5
   projectilePrefab: {fileID: 7115772988598462112, guid: 76ba6557eba0c4e4694373ca3417d020, type: 3}
-  tauxDeTir: 1
-  vitesseProjectile: 10
+  tauxDeTir: 0.3
+  vitesseProjectile: 5
   offsetSpawn: 1.5
   currentHealth: 0
   maxHealth: 3
