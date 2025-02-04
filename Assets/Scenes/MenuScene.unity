@@ -1198,6 +1198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 772817521}
   - component: {fileID: 772817522}
+  - component: {fileID: 772817523}
   m_Layer: 0
   m_Name: ShadowWhite
   m_TagString: Untagged
@@ -1214,8 +1215,8 @@ Transform:
   m_GameObject: {fileID: 772817520}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -0.14, y: -0.55, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.49999988, z: 0.49999988}
+  m_LocalPosition: {x: -0.01, y: -0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 946625510}
@@ -1275,6 +1276,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &772817523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772817520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c56566bd5534a438d23359af3a469c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 946625509}
+  shadow: {fileID: 772817522}
 --- !u!1 &795578677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,7 +1507,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 31fc8acf70ed894478804f2eeccf334a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1709,6 +1724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  health: 10
   invincibilityDuration: 2
   blinkInterval: 0.1
 --- !u!95 &946625507
