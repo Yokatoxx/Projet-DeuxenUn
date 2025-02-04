@@ -14,7 +14,16 @@ public class Shoot : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
+    [SerializeField]
+    private float shootCooldown = 1f;
+
+    [SerializeField]
+    private float minShootDistance = 1f;
+
+    public Transform playerTransform; // Variable publique ajoutée pour le Transform du joueur
+
     private DimensionManager dimensionManager;
+    private float lastShootTime = -Mathf.Infinity;
 
     void Start()
     {
@@ -49,7 +58,7 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time >= lastShootTime + shootCooldown)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -64,10 +73,16 @@ public class Shoot : MonoBehaviour
                 targetPoint = ray.GetPoint(1000f);
             }
 
-            // Conserver la hauteur initiale du spawn point
             targetPoint.y = spawnPoint.position.y;
+            float distance = Vector3.Distance(targetPoint, playerTransform.position);
+            if (distance < minShootDistance)
+            {
+                return;
+            }
 
             Vector3 direction = (targetPoint - spawnPoint.position).normalized;
+
+            lastShootTime = Time.time;
 
             GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
 
@@ -75,14 +90,12 @@ public class Shoot : MonoBehaviour
             if (rb != null)
             {
                 rb.useGravity = false;
-                // Appliquer la vitesse uniquement sur les axes X/Z
                 rb.linearVelocity = new Vector3(direction.x, 0f, direction.z) * projectileSpeed;
             }
 
-            Destroy(projectile, 5f); // Détruire le projectile après 5 secondes
+            Destroy(projectile, 5f);
         }
     }
 
-    // Ajout de la variable projectilePrefab pour basculer dynamiquement
     private GameObject projectilePrefab;
 }

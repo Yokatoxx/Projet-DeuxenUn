@@ -1,3 +1,4 @@
+// Timer.cs
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -26,5 +27,10 @@ public class Timer : MonoBehaviour
     private void UpdateTimerText()
     {
         timerText.text = currentTime.ToString();
+    }
+
+    public int GetCurrentTime()
+    {
+        return currentTime;
     }
 }

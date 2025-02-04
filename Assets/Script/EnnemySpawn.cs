@@ -1,3 +1,4 @@
+// EnnemySpawn.cs
 using UnityEngine;
 using System.Collections;
 
@@ -15,20 +16,47 @@ public class EnnemySpawn : MonoBehaviour
     [SerializeField]
     private Transform[] spawnPoints;
 
+    private bool isSpawning = true;
+    private Coroutine spawnCoroutine;
+
     private void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        spawnCoroutine = StartCoroutine(SpawnEnemies());
+    }
+
+    public void SetSpawnInterval(float interval)
+    {
+        spawnInterval = interval;
+    }
+
+    public void EnableSpawning(bool enable)
+    {
+        if (enable && !isSpawning)
+        {
+            isSpawning = true;
+            spawnCoroutine = StartCoroutine(SpawnEnemies());
+        }
+        else if (!enable && isSpawning)
+        {
+            isSpawning = false;
+            if (spawnCoroutine != null)
+            {
+                StopCoroutine(spawnCoroutine);
+            }
+        }
     }
 
     private IEnumerator SpawnEnemies()
     {
         float elapsed = 0f;
-        while (elapsed < spawnDuration)
+        isSpawning = true;
+        while (elapsed < spawnDuration && isSpawning)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(spawnInterval);
             elapsed += spawnInterval;
         }
+        isSpawning = false;
     }
 
     private void SpawnEnemy()
