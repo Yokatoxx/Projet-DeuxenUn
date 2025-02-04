@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638742298957309254
+  lastModified: 638742291919432908
   FileSizes:
   - Name: Desktop
     Value: 297728
@@ -62,7 +62,7 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Music.strings.bank
   Name: Music.strings
   StudioPath: bank:/Music.strings
-  lastModified: 638742298957344394
+  lastModified: 638742305523198438
   FileSizes:
   - Name: Desktop
     Value: 1054
@@ -98,7 +98,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 4947627598381746175}
   - {fileID: -464603583612848900}
-  cacheTime: 638742298957344394
+  cacheTime: 638742305523198438
   cacheVersion: 131622
 --- !u!114 &1456561448087666628
 MonoBehaviour:
@@ -169,7 +169,7 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638742298956831290
+  lastModified: 638742305523148446
   FileSizes:
   - Name: Desktop
     Value: 1054
@@ -243,7 +243,7 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638742298956775295
+  lastModified: 638742305523148446
   FileSizes:
   - Name: Desktop
     Value: 387424

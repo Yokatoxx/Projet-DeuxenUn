@@ -1,3 +1,4 @@
+// VagueManager.cs
 using UnityEngine;
 
 public class VagueManager : MonoBehaviour

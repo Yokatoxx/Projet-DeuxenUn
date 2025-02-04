@@ -12,6 +12,9 @@ public class EnnemyDistanceBehavior : MonoBehaviour
     public float vitesseProjectile = 20f;
     public float offsetSpawn = 1.5f;
     private Vector3 originalScale; // Stockage de l'échelle originale
+    [SerializeField] private int currentHealth;
+    public int maxHealth = 3;
+    public GameObject Drop;
 
     void Start()
     {
@@ -22,6 +25,7 @@ public class EnnemyDistanceBehavior : MonoBehaviour
         {
             cible = player.transform;
         }
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -74,5 +78,29 @@ public class EnnemyDistanceBehavior : MonoBehaviour
         {
             rb.linearVelocity = directionProjectile * vitesseProjectile;
         }
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("BalleBlanche"))
+        {
+            PrendreDegats(1);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public void PrendreDegats(int degats)
+    {
+        currentHealth -= degats;
+
+        if (currentHealth <= 0)
+        {
+            Mourir();
+        }
+    }
+
+    private void Mourir()
+    {
+        Instantiate(Drop, transform.position, Quaternion.Euler(90, 0, 0));
+        Destroy(gameObject);
     }
 }
