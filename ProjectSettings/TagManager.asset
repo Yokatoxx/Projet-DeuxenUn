@@ -5,9 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
-  - Balle
   - Decor
   - BalleEnemy
+  - BalleBlanche
+  - BalleNoir
+  - Balle
+  - BalleBlancheEnemy
   layers:
   - Default
   - TransparentFX

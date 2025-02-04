@@ -88,7 +88,7 @@ public class PLayerControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("BalleEnemy") && !isInvincible)
+        if (other.gameObject.CompareTag("BalleBlancheEnemy") && !isInvincible)
         {
             PrendreDegats(1);
         }
@@ -96,7 +96,7 @@ public class PLayerControl : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("BalleEnemy") && !isInvincible)
+        if (other.gameObject.CompareTag("BalleBlancheEnemy") && !isInvincible)
         {
             PrendreDegats(1);
         }

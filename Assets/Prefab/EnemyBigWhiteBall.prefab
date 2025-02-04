@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6895505265776757199}
   - component: {fileID: 9163321562262506348}
   m_Layer: 0
-  m_Name: BigWhiteBall
-  m_TagString: BalleBlanche
+  m_Name: EnemyBigWhiteBall
+  m_TagString: BalleBlancheEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

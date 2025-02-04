@@ -45,7 +45,7 @@ public class EnnemyCloseBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Balle"))
+        if (collision.CompareTag("BalleNoir"))
         {
             PrendreDegats(1);
             Destroy(collision.gameObject);
