@@ -6,6 +6,7 @@ public class NombreDeVague : MonoBehaviour
     [SerializeField] private VagueManager vagueManager;
     [SerializeField] private Timer timer;
     [SerializeField] private Canvas menuAmelioration;
+    [SerializeField] private Canvas menuVictory;
 
     public int numeroVague = 1;
     private int maxVagues = 10;
@@ -25,6 +26,11 @@ public class NombreDeVague : MonoBehaviour
         if (menuAmelioration == null)
         {
             Debug.LogError("MenuAmelioration n'est pas assigné dans l'inspecteur.");
+        }
+
+        if (menuVictory == null)
+        {
+            Debug.LogError("MenuVictory n'est pas assigné dans l'inspecteur.");
         }
 
         timer.OnTimerFinished += FinDeVague;
@@ -72,6 +78,7 @@ public class NombreDeVague : MonoBehaviour
         {
             // Fin du jeu ou autre action
             Debug.Log("Toutes les vagues ont été complétées !");
+            menuVictory.enabled = true;
         }
     }
 }
