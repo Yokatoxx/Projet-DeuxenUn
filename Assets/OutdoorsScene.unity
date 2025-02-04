@@ -4856,6 +4856,7 @@ MonoBehaviour:
   - {fileID: 1673240047}
   - {fileID: 1836380936}
   - {fileID: 1586082543}
+  player: {fileID: 1453220168}
 --- !u!4 &1287734907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8358478484688148282, guid: 18128f3c8f4d2754abec8ecf1cc38d50, type: 3}
@@ -5561,6 +5562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  health: 10
   invincibilityDuration: 2
   blinkInterval: 0.1
 --- !u!136 &1453220169
