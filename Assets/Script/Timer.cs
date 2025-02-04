@@ -6,7 +6,10 @@ using System.Collections;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TMP_Text timerText;
-    private int currentTime = 60; // Exemple de temps initial
+    private int currentTime = 15; // Exemple de temps initial
+
+    public Canvas menuAmelioration;
+    public GameObject spawnManager;
 
     private void Start()
     {
@@ -22,6 +25,10 @@ public class Timer : MonoBehaviour
             currentTime--;
             UpdateTimerText();
         }
+
+        menuAmelioration.gameObject.SetActive(true);
+        spawnManager.SetActive(false);
+        DestroyAllEnnemies();
     }
 
     private void UpdateTimerText()
@@ -32,5 +39,14 @@ public class Timer : MonoBehaviour
     public int GetCurrentTime()
     {
         return currentTime;
+    }
+
+    private void DestroyAllEnnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); 
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 }
