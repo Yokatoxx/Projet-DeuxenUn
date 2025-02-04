@@ -144,7 +144,9 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{609010cc-e409-4783-9600-6315ac586fb7}">
 		<relationship name="effects">
+			<destination>{3014ae33-4d4c-4b5b-9b62-ca973050fded}</destination>
 			<destination>{dabac0d9-58a2-4499-8518-c42a0f105c59}</destination>
+			<destination>{52bfbc2d-0612-4008-9cd7-d02ad619d3e2}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{283c369e-a69c-47a3-8da2-3bd566765428}" />
@@ -164,5 +166,30 @@
 			<destination>{22c65461-8a4f-43f1-8050-bd2439c5d56b}</destination>
 		</relationship>
 	</object>
+	<object class="MultibandEqEffect" id="{3014ae33-4d4c-4b5b-9b62-ca973050fded}">
+		<property name="filterTypeB">
+			<value>7</value>
+		</property>
+		<property name="frequencyA">
+			<value>2160.84595</value>
+		</property>
+		<property name="frequencyB">
+			<value>225.849808</value>
+		</property>
+		<property name="qualityA">
+			<value>0.234158188</value>
+		</property>
+		<property name="gainB">
+			<value>-6.92307663</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{dabac0d9-58a2-4499-8518-c42a0f105c59}" />
+	<object class="FlangerEffect" id="{52bfbc2d-0612-4008-9cd7-d02ad619d3e2}">
+		<property name="rate">
+			<value>9</value>
+		</property>
+		<property name="delay">
+			<value>0.75</value>
+		</property>
+	</object>
 </objects>

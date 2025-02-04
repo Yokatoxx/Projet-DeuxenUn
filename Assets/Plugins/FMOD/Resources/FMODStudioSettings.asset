@@ -412,7 +412,9 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
+  - Music
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
