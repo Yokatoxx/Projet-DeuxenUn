@@ -3845,7 +3845,7 @@ MonoBehaviour:
   projectilePrefabOther: {fileID: 7115772988598462112, guid: 44cfa67b72ec9144085509c1d857cae6, type: 3}
   projectileSpeed: 10
   spawnPoint: {fileID: 969285289}
-  shootCooldown: 0.5
+  shootCooldown: 1
   minShootDistance: 2.7
   playerTransform: {fileID: 702516129}
 --- !u!114 &1875110598

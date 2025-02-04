@@ -1,3 +1,4 @@
+// PLayerControl.cs
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
@@ -15,6 +16,12 @@ public class PLayerControl : MonoBehaviour
 
     public float blinkInterval = 0.1f;
     private SpriteRenderer playerSpriteRenderer;
+
+    // Variables pour la régénération de santé
+    [SerializeField] private int regenAmount = 2;
+    public float currentRegenInterval = 5f; // Intervalle actuel en secondes
+    private float regenTimer = 0f;
+    private const float minRegenInterval = 1f; // Intervalle minimum en secondes
 
     void Start()
     {
@@ -60,6 +67,18 @@ public class PLayerControl : MonoBehaviour
                 }
             }
         }
+
+        // Gestion de la régénération de santé
+        if (health < 10) // Supposons que 10 est la santé maximale
+        {
+            regenTimer += Time.deltaTime;
+            if (regenTimer >= currentRegenInterval)
+            {
+                RegenererSante();
+                regenTimer = 0f;
+            }
+        }
+
         if (health <= 0f)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -124,5 +143,20 @@ public class PLayerControl : MonoBehaviour
             elapsed += blinkInterval;
         }
         playerSpriteRenderer.enabled = true;
+    }
+
+    private void RegenererSante()
+    {
+        health += regenAmount;
+        if (health > 10)
+        {
+            health = 10;
+        }
+        Debug.Log("Santé régénérée. Santé actuelle : " + health);
+    }
+
+    public void ReduireIntervalleRegen(float reduction)
+    {
+        currentRegenInterval = Mathf.Max(minRegenInterval, currentRegenInterval - reduction);
     }
 }

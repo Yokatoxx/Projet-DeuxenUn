@@ -51,7 +51,7 @@ public class AmeliorationMenu : MonoBehaviour
     {
         if (hand != null)
         {
-            hand.shootCooldown = Mathf.Max(0.1f, hand.shootCooldown - 0.1f); // Diminue le cooldown pour augmenter le taux de tir
+            hand.shootCooldown = Mathf.Max(0.1f, hand.shootCooldown - 0.1f);
             Debug.Log("Bonus de taux de tir appliqué. Nouveau cooldown : " + hand.shootCooldown);
         }
         OnAmeliorationChoisie();
@@ -63,6 +63,16 @@ public class AmeliorationMenu : MonoBehaviour
         {
             player.health += 5; // Exemple : augmente la santé du joueur
             Debug.Log("Bonus de santé appliqué. Nouvelle santé : " + player.health);
+        }
+        OnAmeliorationChoisie();
+    }
+
+    public void RegenRateBonus()
+    {
+        if (player != null)
+        {
+            player.ReduireIntervalleRegen(0.5f); // Réduit l'intervalle de régénération de 0.5 secondes
+            Debug.Log("Bonus de régénération appliqué. Nouveau intervalle de régénération : " + player.currentRegenInterval + " secondes");
         }
         OnAmeliorationChoisie();
     }
