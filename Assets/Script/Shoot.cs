@@ -15,12 +15,12 @@ public class Shoot : MonoBehaviour
     private Transform spawnPoint;
 
     [SerializeField]
-    private float shootCooldown = 1f;
+    public float shootCooldown = 1f;
 
     [SerializeField]
     private float minShootDistance = 1f;
 
-    public Transform playerTransform; // Variable publique ajoutée pour le Transform du joueur
+    public Transform playerTransform; // Variable publique ajoutÃ©e pour le Transform du joueur
 
     private DimensionManager dimensionManager;
     private float lastShootTime = -Mathf.Infinity;

@@ -6,7 +6,7 @@ using System.Collections;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TMP_Text timerText;
-    private int currentTime = 15; // Exemple de temps initial
+    public int currentTime = 15; // Exemple de temps initial
 
     public Canvas menuAmelioration;
     public GameObject spawnManager;
@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
         StartCoroutine(DecrementTimer());
     }
 
-    private IEnumerator DecrementTimer()
+    public IEnumerator DecrementTimer()
     {
         while (currentTime > 0)
         {
@@ -31,7 +31,7 @@ public class Timer : MonoBehaviour
         DestroyAllEnnemies();
     }
 
-    private void UpdateTimerText()
+    public void UpdateTimerText()
     {
         timerText.text = currentTime.ToString();
     }
