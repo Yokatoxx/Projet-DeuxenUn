@@ -6390,8 +6390,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab1: {fileID: 6726915950437723849, guid: df9298a8e96d6574ea3c4ee102859798, type: 3}
   enemyPrefab2: {fileID: 7761253080551115504, guid: 0adac1d1cf3496441b70ce2150b9e444, type: 3}
+  spawnIndicatorPrefab1: {fileID: 5590211543072474738, guid: 4265f8c779940c043a54cca4adbb3118, type: 3}
+  spawnIndicatorPrefab2: {fileID: 542458672870568613, guid: 53f38ca0f246ee94bb6288f302665e6f, type: 3}
   spawnInterval: 2
   spawnDuration: 60
+  spawnIndicatorDuration: 2
   spawnPoints:
   - {fileID: 1643201273}
   - {fileID: 1248017129}

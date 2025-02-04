@@ -72,7 +72,7 @@ public class EnnemyDistanceBehavior : MonoBehaviour
         Vector3 directionProjectile = (cible.position - transform.position).normalized;
         Vector3 spawnPosition = transform.position + directionProjectile * offsetSpawn;
 
-        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.LookRotation(directionProjectile));
+        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.Euler(90, 0, 0));
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         if (rb != null)
         {
