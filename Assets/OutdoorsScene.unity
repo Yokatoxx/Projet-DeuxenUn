@@ -1398,6 +1398,7 @@ GameObject:
   - component: {fileID: 240935121}
   - component: {fileID: 240935120}
   - component: {fileID: 240935124}
+  - component: {fileID: 240935125}
   m_Layer: 5
   m_Name: AmeliorationMenu
   m_TagString: Untagged
@@ -1505,6 +1506,37 @@ MonoBehaviour:
   spawner: {fileID: 1635153050}
   player: {fileID: 1453220168}
   hand: {fileID: 757684763}
+--- !u!114 &240935125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240935119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1606693680
+      Data2: 1097862403
+      Data3: 1365136571
+      Data4: 1545733492
+    Path: event:/Music
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &252698160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7874,7 +7906,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1635153052}
   - component: {fileID: 1635153051}
-  - component: {fileID: 1635153053}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -7930,37 +7961,6 @@ Transform:
   - {fileID: 81660629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1635153053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635153050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1606693680
-      Data2: 1097862403
-      Data3: 1365136571
-      Data4: 1545733492
-    Path: event:/Music
-  Event: 
-  EventPlayTrigger: 12
-  EventStopTrigger: 11
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &1643201272
 GameObject:
   m_ObjectHideFlags: 0
