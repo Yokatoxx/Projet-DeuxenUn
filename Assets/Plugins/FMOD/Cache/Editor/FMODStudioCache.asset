@@ -42,11 +42,38 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638742531317631976
+  lastModified: 638742545800670620
   FileSizes:
   - Name: Desktop
     Value: 297728
   Exists: 1
+--- !u!114 &-3412577064177072164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DammagePlayer
+  m_EditorClassIdentifier: 
+  Path: event:/DammagePlayer
+  Guid:
+    Data1: 395255992
+    Data2: 1306629943
+    Data3: -1742822528
+    Data4: -820896470
+  Banks:
+  - {fileID: 7519722309849211403}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-1411099409185232044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,10 +116,10 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Music.strings.bank
   Name: Music.strings
   StudioPath: bank:/Music.strings
-  lastModified: 638742531317657260
+  lastModified: 638742545800691054
   FileSizes:
   - Name: Desktop
-    Value: 1148
+    Value: 1196
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -120,6 +147,7 @@ MonoBehaviour:
   - {fileID: 3750672743221391702}
   - {fileID: -6437894863667374888}
   - {fileID: 500131310080645538}
+  - {fileID: -3412577064177072164}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7519722309849211403}
@@ -127,7 +155,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 4947627598381746175}
   - {fileID: -464603583612848900}
-  cacheTime: 638742531317657260
+  cacheTime: 638742545800691054
   cacheVersion: 131622
 --- !u!114 &500131310080645538
 MonoBehaviour:
@@ -225,10 +253,10 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638742531317409669
+  lastModified: 638742545800395778
   FileSizes:
   - Name: Desktop
-    Value: 1148
+    Value: 1196
   Exists: 1
 --- !u!114 &6853106092544934800
 MonoBehaviour:
@@ -299,10 +327,10 @@ MonoBehaviour:
   Path: Assets/FMOD/DeuxEnUn/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638742531317384821
+  lastModified: 638742545800375121
   FileSizes:
   - Name: Desktop
-    Value: 393984
+    Value: 396160
   Exists: 1
 --- !u!114 &8687243140879440856
 MonoBehaviour:

@@ -182,16 +182,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
+  CollisionTag: Player
   EventReference:
     Guid:
-      Data1: 1135580691
-      Data2: 1162918296
-      Data3: -1069957468
-      Data4: 64188217
-    Path: event:/Dammage
+      Data1: 395255992
+      Data2: 1306629943
+      Data3: -1742822528
+      Data4: -820896470
+    Path: event:/DammagePlayer
   Event: 
-  EventPlayTrigger: 2
+  EventPlayTrigger: 3
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0
