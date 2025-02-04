@@ -7,7 +7,7 @@ public class PLayerControl : MonoBehaviour
 {
     public float speed = 5f;
     private Rigidbody rb;
-    private int health = 10;
+    public int health = 10;
 
     public float invincibilityDuration = 2f;
     private float invincibilityTimer = 0f;
@@ -47,7 +47,7 @@ public class PLayerControl : MonoBehaviour
             playerSpriteRenderer.transform.localScale = new Vector3(2, 2, 2);
         }
 
-        // Gestion du timer d'invincibilité
+        // Gestion du timer d'invincibilitÃ©
         if (isInvincible)
         {
             invincibilityTimer -= Time.deltaTime;
