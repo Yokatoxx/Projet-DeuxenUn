@@ -3,17 +3,14 @@ using UnityEngine;
 public class Actractor : MonoBehaviour
 {
     public Transform target;
-    public float moveSpeed = 1f;
+    public float moveSpeed = 2f;
 
     private void Update()
     {
         if (target)
         {
-            Vector2 direction = target.position - transform.position;
-            transform.Translate(direction.normalized * moveSpeed * Time.deltaTime);
-
-
-
+            Vector3 direction = target.position - transform.position; // Utiliser Vector3
+            transform.Translate(direction.normalized * moveSpeed * Time.deltaTime, Space.World);
         }
     }
 }
