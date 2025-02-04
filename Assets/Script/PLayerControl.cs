@@ -7,7 +7,7 @@ public class PLayerControl : MonoBehaviour
 {
     public float speed = 5f;
     private Rigidbody rb;
-    private int health = 10;
+    public int health = 10;
 
     public float invincibilityDuration = 2f;
     private float invincibilityTimer = 0f;
