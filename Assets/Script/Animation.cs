@@ -12,7 +12,7 @@ public class Animation : MonoBehaviour
     {
         bool isMooving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
         animator.SetBool("IsMooving", isMooving);
-
+       
         
     }
 
