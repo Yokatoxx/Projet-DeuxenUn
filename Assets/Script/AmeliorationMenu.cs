@@ -1,38 +1,84 @@
+// AmeliorationMenu.cs
 using UnityEngine;
 
 public class AmeliorationMenu : MonoBehaviour
 {
-    public Timer timer;
-    public GameObject spawner;
-    public PLayerControl player;
-    public Shoot hand;
+    [SerializeField] private NombreDeVague nombreDeVague;
+    [SerializeField] private Timer timer;
+    [SerializeField] private GameObject spawner;
+    [SerializeField] private PLayerControl player;
+    [SerializeField] private Shoot hand;
 
+    private void Start()
+    {
+        if (nombreDeVague == null)
+        {
+            Debug.LogError("NombreDeVague n'est pas assigné dans l'inspecteur.");
+        }
+
+        if (timer == null)
+        {
+            Debug.LogError("Timer n'est pas assigné dans l'inspecteur.");
+        }
+
+        if (spawner == null)
+        {
+            Debug.LogError("Spawner n'est pas assigné dans l'inspecteur.");
+        }
+
+        if (player == null)
+        {
+            Debug.LogError("Player n'est pas assigné dans l'inspecteur.");
+        }
+
+        if (hand == null)
+        {
+            Debug.LogError("Hand (Shoot) n'est pas assigné dans l'inspecteur.");
+        }
+    }
 
     public void SpeedBonus()
     {
-        player.speed += 1;
-        ResetWave();
+        if (player != null)
+        {
+            player.speed += 1;
+            Debug.Log("Bonus de vitesse appliqué. Nouvelle vitesse : " + player.speed);
+        }
+        OnAmeliorationChoisie();
     }
 
     public void ShootingRateBonus()
     {
-        hand.shootCooldown += 0.1f;
-        ResetWave();
+        if (hand != null)
+        {
+            hand.shootCooldown = Mathf.Max(0.1f, hand.shootCooldown - 0.1f); // Diminue le cooldown pour augmenter le taux de tir
+            Debug.Log("Bonus de taux de tir appliqué. Nouveau cooldown : " + hand.shootCooldown);
+        }
+        OnAmeliorationChoisie();
     }
 
     public void HealingBonus()
     {
-        ResetWave();
+        if (player != null)
+        {
+            player.health += 5; // Exemple : augmente la santé du joueur
+            Debug.Log("Bonus de santé appliqué. Nouvelle santé : " + player.health);
+        }
+        OnAmeliorationChoisie();
     }
 
-    private void ResetWave()
+    private void OnAmeliorationChoisie()
     {
-        timer.currentTime = 15;
-        timer.UpdateTimerText();
-        StartCoroutine(timer.DecrementTimer());
-        spawner.SetActive(true);
-        gameObject.SetActive(false);
-        
-    }
+        if (nombreDeVague != null)
+        {
+            nombreDeVague.OnAmeliorationChoisie();
+        }
+        else
+        {
+            Debug.LogError("NombreDeVague n'est pas assigné. Impossible de démarrer la prochaine vague.");
+        }
 
+        // Désactiver le menu d'amélioration
+        gameObject.SetActive(false);
+    }
 }

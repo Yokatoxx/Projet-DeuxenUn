@@ -1404,7 +1404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &240935120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,6 +1500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a06d918e048b64394d83185ba6fc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreDeVague: {fileID: 647335711}
   timer: {fileID: 44724651}
   spawner: {fileID: 1635153050}
   player: {fileID: 1453220168}
@@ -3216,6 +3217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647335710}
   - component: {fileID: 647335709}
+  - component: {fileID: 647335711}
   m_Layer: 0
   m_Name: VagueManager
   m_TagString: Untagged
@@ -3253,6 +3255,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &647335711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647335708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63823c34e0ae8f24787af57603d6bceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vagueManager: {fileID: 647335709}
+  timer: {fileID: 44724651}
+  menuAmelioration: {fileID: 240935122}
 --- !u!1 &661121475
 GameObject:
   m_ObjectHideFlags: 0
@@ -7880,7 +7897,6 @@ MonoBehaviour:
   spawnIndicatorPrefab1: {fileID: 5590211543072474738, guid: 4265f8c779940c043a54cca4adbb3118, type: 3}
   spawnIndicatorPrefab2: {fileID: 542458672870568613, guid: 53f38ca0f246ee94bb6288f302665e6f, type: 3}
   spawnInterval: 2
-  spawnDuration: 60
   spawnIndicatorDuration: 2
   spawnPoints:
   - {fileID: 1643201273}

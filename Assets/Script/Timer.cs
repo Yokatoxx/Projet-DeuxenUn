@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System;
 
 public class Timer : MonoBehaviour
 {
@@ -11,10 +12,15 @@ public class Timer : MonoBehaviour
     public Canvas menuAmelioration;
     public GameObject spawnManager;
 
+    // Déclaration de l'événement pour la fin du timer
+    public event Action OnTimerFinished;
+
+    private Coroutine decrementCoroutine;
+
     private void Start()
     {
         UpdateTimerText();
-        StartCoroutine(DecrementTimer());
+        // Suppression du démarrage automatique du timer
     }
 
     public IEnumerator DecrementTimer()
@@ -26,9 +32,8 @@ public class Timer : MonoBehaviour
             UpdateTimerText();
         }
 
-        menuAmelioration.gameObject.SetActive(true);
-        spawnManager.SetActive(false);
-        DestroyAllEnnemies();
+        // Notifier que le timer est terminé
+        OnTimerFinished?.Invoke();
     }
 
     public void UpdateTimerText()
@@ -41,9 +46,20 @@ public class Timer : MonoBehaviour
         return currentTime;
     }
 
-    private void DestroyAllEnnemies()
+    public void ResetTimer(int newTime)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); 
+        if (decrementCoroutine != null)
+        {
+            StopCoroutine(decrementCoroutine);
+        }
+        currentTime = newTime;
+        UpdateTimerText();
+        decrementCoroutine = StartCoroutine(DecrementTimer());
+    }
+
+    public void DestroyAllEnnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
             Destroy(enemy);

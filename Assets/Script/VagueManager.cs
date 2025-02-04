@@ -7,6 +7,8 @@ public class VagueManager : MonoBehaviour
     [SerializeField] private Timer timer;
     [SerializeField] private int maxEnemiesInScene = 10;
 
+    private bool isSpawning = true;
+
     private void Start()
     {
         if (enemySpawn == null)
@@ -22,21 +24,21 @@ public class VagueManager : MonoBehaviour
 
     private void Update()
     {
-        if (timer != null)
+        if (isSpawning && timer != null)
         {
             int remainingTime = timer.GetCurrentTime();
             float spawnInterval = CalculateSpawnInterval(remainingTime);
             enemySpawn.SetSpawnInterval(spawnInterval);
-        }
 
-        int currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        if (currentEnemies < maxEnemiesInScene)
-        {
-            enemySpawn.EnableSpawning(true);
-        }
-        else
-        {
-            enemySpawn.EnableSpawning(false);
+            int currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            if (currentEnemies < maxEnemiesInScene)
+            {
+                enemySpawn.EnableSpawning(true);
+            }
+            else
+            {
+                enemySpawn.EnableSpawning(false);
+            }
         }
     }
 
@@ -44,5 +46,22 @@ public class VagueManager : MonoBehaviour
     {
         // Fonction logarithmique pour ajuster l'intervalle de spawn
         return Mathf.Max(0.5f, Mathf.Log(remainingTime + 1) / 2);
+    }
+
+    public void SetMaxEnemiesInScene(int maxEnemies)
+    {
+        maxEnemiesInScene = maxEnemies;
+    }
+
+    public void StartSpawning()
+    {
+        isSpawning = true;
+        enemySpawn.EnableSpawning(true);
+    }
+
+    public void StopSpawning()
+    {
+        isSpawning = false;
+        enemySpawn.EnableSpawning(false);
     }
 }

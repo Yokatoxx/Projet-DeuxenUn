@@ -18,20 +18,18 @@ public class EnnemySpawn : MonoBehaviour
     private float spawnInterval = 2f;
 
     [SerializeField]
-    private float spawnDuration = 10f;
-
-    [SerializeField]
     private float spawnIndicatorDuration = 1f;
 
     [SerializeField]
     private Transform[] spawnPoints;
 
-    private bool isSpawning = true;
+    private bool isSpawning = false;
     private Coroutine spawnCoroutine;
 
     private void Start()
     {
-        spawnCoroutine = StartCoroutine(SpawnEnemies());
+        // Ne pas démarrer automatiquement le spawning ici
+        // Le contrôle du démarrage est effectué via VagueManager
     }
 
     public void SetSpawnInterval(float interval)
@@ -58,15 +56,12 @@ public class EnnemySpawn : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        float elapsed = 0f;
         isSpawning = true;
-        while (elapsed < spawnDuration && isSpawning)
+        while (isSpawning)
         {
             StartCoroutine(SpawnEnemyCoroutine());
             yield return new WaitForSeconds(spawnInterval);
-            elapsed += spawnInterval;
         }
-        isSpawning = false;
     }
 
     private IEnumerator SpawnEnemyCoroutine()
@@ -82,20 +77,42 @@ public class EnnemySpawn : MonoBehaviour
         GameObject prefabToSpawn = spawnFirstEnemy ? enemyPrefab1 : enemyPrefab2;
         GameObject indicatorPrefab = spawnFirstEnemy ? spawnIndicatorPrefab1 : spawnIndicatorPrefab2;
 
-        // Afficher l'indicateur de spawn correspondant avec rotation
+        // Afficher l'indicateur de spawn avec rotation
+        GameObject spawnIndicator = null;
         if (indicatorPrefab != null)
         {
             // Instancier le prefab indicateur avec rotation
-            GameObject spawnIndicator = Instantiate(indicatorPrefab, spawnPosition, Quaternion.Euler(90f, 0f, 0f));
+            spawnIndicator = Instantiate(indicatorPrefab, spawnPosition, Quaternion.Euler(90f, 0f, 0f));
+        }
 
-            // Attendre la durée de l'indicateur
-            yield return new WaitForSeconds(spawnIndicatorDuration);
+        // Attendre la durée de l'indicateur
+        float timer = 0f;
+        while (timer < spawnIndicatorDuration)
+        {
+            if (!isSpawning)
+            {
+                // Si le spawning est désactivé, sortir de la coroutine
+                if (spawnIndicator != null)
+                {
+                    Destroy(spawnIndicator);
+                }
+                yield break;
+            }
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
-            // Détruire l'indicateur de spawn
+        // Détruire l'indicateur de spawn
+        if (spawnIndicator != null)
+        {
             Destroy(spawnIndicator);
         }
 
-        // Instancier l'ennemi avec rotation
-        Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
+        // Vérifier si le spawning est toujours activé avant de créer l'ennemi
+        if (isSpawning)
+        {
+            // Instancier l'ennemi avec rotation
+            Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
+        }
     }
 }
