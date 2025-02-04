@@ -64,6 +64,10 @@ public class PLayerControl : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            DimensionManager.Instance.SwitchDimension();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

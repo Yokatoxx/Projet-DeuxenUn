@@ -3,7 +3,10 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     [SerializeField]
-    private GameObject projectilePrefab;
+    private GameObject projectilePrefabWhite;
+
+    [SerializeField]
+    private GameObject projectilePrefabOther;
 
     [SerializeField]
     private float projectileSpeed = 10f;
@@ -11,11 +14,43 @@ public class Shoot : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
+    private DimensionManager dimensionManager;
+
+    void Start()
+    {
+        dimensionManager = DimensionManager.Instance;
+        UpdateProjectilePrefab();
+
+        if (dimensionManager != null)
+        {
+            dimensionManager.OnDimensionChange += UpdateProjectilePrefab;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (dimensionManager != null)
+        {
+            dimensionManager.OnDimensionChange -= UpdateProjectilePrefab;
+        }
+    }
+
+    void UpdateProjectilePrefab()
+    {
+        if (dimensionManager.IsInWhiteDimension)
+        {
+            projectilePrefab = projectilePrefabWhite;
+        }
+        else
+        {
+            projectilePrefab = projectilePrefabOther;
+        }
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Vector3 targetPoint;
@@ -47,4 +82,7 @@ public class Shoot : MonoBehaviour
             Destroy(projectile, 5f); // Détruire le projectile après 5 secondes
         }
     }
+
+    // Ajout de la variable projectilePrefab pour basculer dynamiquement
+    private GameObject projectilePrefab;
 }
