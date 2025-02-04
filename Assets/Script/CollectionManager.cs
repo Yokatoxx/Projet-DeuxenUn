@@ -4,36 +4,38 @@ using TMPro;
 
 public class CollectionManager : MonoBehaviour
 {
-    public TextMeshProUGUI ameUI;
-    int ameCollected = 0;
+    [SerializeField] private TextMeshProUGUI ameUI;
 
     private void OnEnable()
     {
-        Ame.OnAmeCollected += AmeCollected;
         if (Economy.Instance != null)
         {
             Economy.Instance.OnCoinsChanged += UpdateAmeUI;
             UpdateAmeUI(Economy.Instance.Coins);
         }
+        else
+        {
+            Debug.LogError("Instance d'Economy non trouvée.");
+        }
     }
 
     private void OnDisable()
     {
-        Ame.OnAmeCollected -= AmeCollected;
         if (Economy.Instance != null)
         {
             Economy.Instance.OnCoinsChanged -= UpdateAmeUI;
         }
     }
 
-    private void AmeCollected()
-    {
-        ameCollected++;
-        // La mise à jour de l'UI est désormais gérée par l'événement OnCoinsChanged
-    }
-
     private void UpdateAmeUI(int currentCoins)
     {
-        ameUI.text = $"{currentCoins}";
+        if (ameUI != null)
+        {
+            ameUI.text = $"{currentCoins} Ame";
+        }
+        else
+        {
+            Debug.LogError("ameUI n'est pas assigné dans l'inspecteur.");
+        }
     }
 }
